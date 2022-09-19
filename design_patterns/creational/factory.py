@@ -1,140 +1,117 @@
-"""*What is this pattern about?
-A Factory Is a generational design pattern that defines a common interface 
-for creating objects in a superclass, allowing subclasses to change the 
-type of objects they create.
-*What does this example do?
-The code shows a way to localize words in two languages: English and
-Greek. "get_localizer" is the factory function that constructs a
-localizer depending on the language chosen. The localizer object will
-be an instance from a different class according to the language
-localized. However, the main code does not have to worry about which
-localizer will be instantiated, since the method "localize" will be called
-in the same way independently of the language.
-*Where can the pattern be used practically?
-The Factory Method can be seen in the popular web framework Django:
-https://docs.djangoproject.com/en/4.0/topics/forms/formsets/
-For example, different types of forms are created using a formset_factory
-*TL;DR
-Creates objects without having to specify the exact class.
-"""
-
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from enum import Enum
-
-
-class DeliveryStatus(Enum):
-    """Delivery status"""
-    created = 'created'
-    shipping = 'shipping'
-    completed = 'completed'
 
 
 class DeliveryRoute:
     """DeliveryRoute class"""
 
-    def __init__(
-            self,
-            to: str,
-            fr: str,
-            status: DeliveryStatus = DeliveryStatus.created) -> None:
-        self.to = to
+    def __init__(self, fr: str, to: str,) -> None:
         self.fr = fr
-        self.status = status
+        self.to = to
+
+    def __str__(self) -> str:
+        return f'Route from {self.fr} to {self.to}'
+
+    def reverse(self) -> None:
+        self.to, self.fr = self.fr, self.to
 
 
 class Transport(ABC):
-    """Transport abstract class"""
+    """Abstract transport class"""
 
-    def __init__(self, route: DeliveryRoute = None) -> None:
-        self.routes = []
-        if route:
-            self.routes.append(route)
+    def __init__(self, route: DeliveryRoute) -> None:
+        self.route = route
 
-    def add_route(self, route: DeliveryRoute) -> None:
-        """Add route"""
-        self.routes.append(route)
+    @property
+    def fr(self) -> str:
+        return self.route.fr
+
+    @property
+    def to(self) -> str:
+        return self.route.to
+
+    @property
+    def name(self) -> str:
+        return type(self).__name__
+
+    def _deliver(self) -> None:
+        self.route.reverse()
+
+    @abstractmethod
+    def deliver(self):
+        """Delivery abstract transport implementation """
+        pass
 
 
 class Truck(Transport):
-    """Truck class"""
+    """Concrete Truck transport class"""
+
+    def deliver(self) -> None:
+        self._deliver()
+        print('Truck delivered')
 
 
 class Ship(Transport):
-    """Ship class"""
+    """Concrete Ship transport class"""
+
+    def deliver(self) -> None:
+        self._deliver()
+        print('Ship delivered')
 
 
 class Train(Transport):
-    """Train class"""
+    """Concrete Train transport class"""
+
+    def deliver(self) -> None:
+        self._deliver()
+        print('Train delivered')
 
 
 class Logistics:
-    """A Logistics factory class"""
+    """Logistics Class"""
 
     def __init__(self) -> None:
-        self.transport = []
+        self.queue: list[Transport] = []
 
-    def deliver(self, name: str) -> str:
-        """Plan a delivery route"""
-        return self.transport.get(name, name)
+    def __len__(self) -> int:
+        return len(self.queue)
 
-    def create_transport(self) -> str:
-        """Create transport"""
-        return self.transport.get(msg, msg)
+    def __str__(self) -> str:
+        return f'Logistics ({len(self)} in queue) {", ".join([x.name for x in self.queue])}'
 
+    def add_transport(self, transport: Transport) -> None:
+        """Add transport"""
+        self.queue.append(transport)
 
-def main():
-    logistics = Logistics()
-    print(logistics)
+    def deliver(self) -> None:
+        """Deliver first transport in queue"""
 
-
-if __name__ == "__main__":
-    main()
-
-
-# class GreekLocalizer:
-#     """A simple localizer a la gettext"""
-
-#     def __init__(self) -> None:
-#         self.translations = {"dog": "σκύλος", "cat": "γάτα"}
-
-#     def localize(self, msg: str) -> str:
-#         """We'll punt if we don't have a translation"""
-#         return self.translations.get(msg, msg)
+        if not len(self):
+            print('No transport in queue')
+            return
+        t = self.queue.pop(0)
+        t.deliver()
+        print(f'Delivered {t.name} on {t.route}')
 
 
-# class EnglishLocalizer:
-#     """Simply echoes the message"""
+class Factory:
+    """Transport factory class"""
 
-#     def localize(self, msg: str) -> str:
-#         return msg
+    @staticmethod
+    def createDeliveryRoute(*args, **kwargs) -> DeliveryRoute:
+        return DeliveryRoute(*args, **kwargs)
 
+    @staticmethod
+    def createTruck(*args, **kwargs) -> Truck:
+        return Truck(*args, **kwargs)
 
-# def get_localizer(language: str = "English") -> object:
-#     """Factory"""
-#     localizers = {
-#         "English": EnglishLocalizer,
-#         "Greek": GreekLocalizer,
-#     }
+    @staticmethod
+    def createTrain(*args, **kwargs) -> Train:
+        return Train(*args, **kwargs)
 
-#     return localizers[language]()
+    @staticmethod
+    def createShip(*args, **kwargs) -> Ship:
+        return Ship(*args, **kwargs)
 
-
-# def main():
-#     """
-#     # Create our localizers
-#     >>> e, g = get_localizer(language="English"), get_localizer(language="Greek")
-#     # Localize some text
-#     >>> for msg in "dog parrot cat bear".split():
-#     ...     print(e.localize(msg), g.localize(msg))
-#     dog σκύλος
-#     parrot parrot
-#     cat γάτα
-#     bear bear
-#     """
-
-
-# if __name__ == "__main__":
-#     import doctest
-
-#     doctest.testmod()
+    @staticmethod
+    def createLogistics() -> Logistics:
+        return Logistics()
