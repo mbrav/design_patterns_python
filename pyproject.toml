@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "design-patterns"
+version = "0.1.0"
+description = "A collection of design patterns in Python"
+authors = ["\"mbrav\" <mbrav@protonmail.com>"]
+readme = "README.md"
+packages = [{include = "design_patterns"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
