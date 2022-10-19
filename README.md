@@ -15,7 +15,7 @@ There are also two types of patterns - *idioms* and *architectural* patterns.
 
 As the name suggests, it provides the object or classes creation mechanism that enhance the flexibilities and reusability of the existing code. They reduce the dependency and controlling how the use interaction with our class so we wouldn't deal with the complex construction. Below are the various design pattern of creational design pattern.
 
-- **Factory Method** ([creational/factory.py](design_patterns/creational/factory.py) - Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses. The pattern has creational purpose and applies to classes where deals with relationships through inheritence ie. they are static-fixed at compile time. In contrast to *Abstract Factory*, Factory Method contain method to produce only one type of product.
+- **Factory Method** ([creational/factory.py](design_patterns/creational/factory.py) - Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses. The pattern has creational purpose and applies to classes where deals with relationships through inheritence ie. they are static-fixed at compile time. In contrast to *Abstract Factory*, Factory Method contain method to produce only one type of product.<sup>[1](#footnote1)</sup>
 
 - **Abstract Factory** ([creational/abstract_factory.py](design_patterns/creational/abstract_factory.py)) - Abstract factory pattern has creational purpose and provides an interface for creating families of related or dependent objects without specifying their concrete classes. Pattern applies to object and deal with object relationships, which are more dynamic. In contrast to *Factory Method*, Abstract Factory pattern produces family of types that are related, ie. it has more than one method of types it produces.
 
@@ -78,3 +78,9 @@ Behavior Design Patterns are responsible for how one class communicates with oth
 - **Command Query Responsibility Segregation (CQRS)** - Reduces the amount of complex queries and allows for creation of scenario-specific queries, but requires synchronization. The model is separated into read logic and write logic.
 
 - **Event sourcing** - Stores everything in the current state. All events are things that happen in the past.  The advantage is that it is possible to trace, audit and replay events. There is no need to update database. The disadvantage, is that it becomes hard to identify which events are new, and which ones are replays, which makes it non-trivial.
+
+## Additional resources
+
+- [python-patterns.guide](https://python-patterns.guide/)
+
+<a name="footnote1">1</a>: The “Factory Method” pattern is a poor fit for Python. It was designed for underpowered programming languages where classes and functions can’t be passed as parameters or stored as attributes. In those languages, the Factory Method serves as an awkward but necessary escape route. But it’s not a good design for Python applications. ([source](https://python-patterns.guide/gang-of-four/factory-method/))
