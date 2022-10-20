@@ -37,7 +37,7 @@ class Transport(ABC):
         self.route.reverse()
 
     @abstractmethod
-    def deliver(self):
+    def deliver(self) -> None:
         """Delivery abstract transport implementation """
         pass
 

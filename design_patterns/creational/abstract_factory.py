@@ -88,6 +88,6 @@ class AbstractFactory:
                 return ModernFurnitureFactory()
             case Style.art_deco.value:
                 return ArtDecoFurnitureFactory()
-            case other:
+            case _:
                 raise Exception(
                     f'No factory that produces furniture in the {style} style')

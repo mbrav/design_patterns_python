@@ -65,3 +65,8 @@ jobs:
         run: |
           source $VENV
           mypy .
+
+      - name: Run flake8
+        run: |
+          source $VENV
+          flake8 .
