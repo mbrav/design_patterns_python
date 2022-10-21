@@ -8,11 +8,11 @@ class DeliveryRoute:
         self.fr = fr
         self.to = to
 
-    def __str__(self) -> str:
-        return f'Route from {self.fr} to {self.to}'
-
     def reverse(self) -> None:
         self.to, self.fr = self.fr, self.to
+
+    def __str__(self) -> str:
+        return f'Route from {self.fr} to {self.to}'
 
 
 class Transport(ABC):
