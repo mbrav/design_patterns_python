@@ -1,6 +1,4 @@
 
-from abc import ABCMeta, abstractmethod
-
 
 class DatabasePrototype:
     """Database Prototype class"""
@@ -21,4 +19,3 @@ class DatabasePrototype:
     def query(query: str) -> str:
         print(f'Running SQL query: {query}')
         return f'Result for {query}'
-        

@@ -21,9 +21,9 @@ As the name suggests, it provides the object or classes creation mechanism that 
 
 - **Builder** ([creational/builder.py](design_patterns/creational/builder.py)) - A generative design pattern, which allows you to copy objects without going into details of their implementation.
   
-- **Prototype** ([creational/prototype.py](design_patterns/creational/prototype.py)) - It is used to create a new object from the existing object
+- **Prototype** ([creational/prototype.py](design_patterns/creational/prototype.py)) - It is used to create a new object from an existing object,
 
-- **Singleton**([creational/singleton.py](design_patterns/creational/singleton.py)) - Singleton design pattern make sure that there is only one instance of an object is created.
+- **Singleton**([creational/singleton.py](design_patterns/creational/singleton.py)) - Singleton design pattern make sure that only one instance of an object is created.
 
 ### 2. Structural Design Patterns (TODO)
 
