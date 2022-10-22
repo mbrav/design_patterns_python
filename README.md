@@ -29,19 +29,19 @@ As the name suggests, it provides the object or classes creation mechanism that 
 
 Structural Design Patterns mainly responsible for assemble object and classes into a larger structure making sure that these structure should be flexible and efficient. They are very essential for enhancing readability and maintainability of the code. It also ensure that functionalities are properly separated, encapsulated. It reduces the minimal interface between interdependent things.
 
-- **Adapter** - It provides us for two incompatible classes to work together by wrapping an interface around one of the existing classes.
+- **Adapter** ([structural/adapter.py](design_patterns/structural/adapter.py)) - It provides us for two incompatible classes to work together by wrapping an interface around one of the existing classes.
 
-- **Composite** - It wraps a group of objects into a single object.
+- **Bridge** ([structural/bridge.py](design_patterns/structural/bridge.py))  - It decouples an abstraction so that two classes can vary independently.
 
-- **Bridge** - It decouples an abstraction so that two classes can vary independently.
+- **Composite** ([structural/composite.py](design_patterns/structural/adapter.py))  - It wraps a group of objects into a single object.
 
-- **Decorator** - It extends the object behavior dynamically at the run time.
+- **Decorator** ([structural/decorator.py](design_patterns/structural/adapter.py))  - It extends the object behavior dynamically at the run time.
 
-- **Facade** - It offers a simple interface to more complex underlying objects.
+- **Facade** ([structural/facade.py](design_patterns/structural/facade.py))  - It offers a simple interface to more complex underlying objects.
 
-- **Flyweight** - It decreases the cost of complex object model.
+- **Flyweight** ([structural/flyweight.py](design_patterns/structural/flyweight.py))  - It decreases the cost of complex object model.
 
-- **Proxy** - It reduces the cost, reduce complexity, and provide the placeholder interface to an underlying object to control access.
+- **Proxy** ([structural/proxy.py](design_patterns/structural/proxy.py))  - It reduces the cost, reduce complexity, and provide the placeholder interface to an underlying object to control access.
 
 ### 3. Behavior Design Pattern (TODO)
 
