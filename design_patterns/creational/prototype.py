@@ -1,10 +1,10 @@
 import copy
-from abc import ABCMeta, abstractmethod
+from abc import ABC, abstractmethod
 from math import pi as PI
 from typing import Dict
 
 
-class Shape(metaclass=ABCMeta):
+class Shape(ABC):
     """Abstract Shape Class"""
 
     def __init__(self, x: int = 0, y: int = 0, color: str = "black", name: str = "shape"):
