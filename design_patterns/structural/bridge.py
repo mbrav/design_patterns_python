@@ -4,7 +4,7 @@ from dataclasses import asdict, dataclass
 
 @dataclass
 class DeviceState:
-    volume: float = 0.5
+    volume: int = 50
     enabled: bool = False
     channel: int = 1
 
@@ -12,42 +12,77 @@ class DeviceState:
 class Device(ABC):
     """Abstract Device class"""
 
-    @abstractproperty
+    def __init__(self) -> None:
+        self.state = DeviceState()
+
+    @abstractmethod
+    def toggle_power(self) -> None:
+        ...
+
     def is_enabled(self) -> bool:
-        ...
+        return self.state.enabled
 
-    @abstractmethod
-    def enable(self) -> None:
-        ...
+    def get_volume(self) -> int:
+        return self.state.volume
 
-    @abstractmethod
-    def disable(self) -> None:
-        ...
+    def set_volume(self, volume: int) -> None:
+        self.state.volume = volume
 
-    @abstractmethod
-    def get_volume(self) -> float:
-        ...
-
-    @abstractmethod
-    def set_volume(self, volume: float) -> None:
-        ...
-
-    @abstractmethod
     def get_channel(self) -> int:
-        ...
+        return self.state.channel
 
-    @abstractmethod
     def set_channel(self, channel: int) -> None:
-        ...
+        self.state.channel = channel
 
 
-class Remote(Device):
-    """Remote class"""
+class Radio(Device):
+    """Radio class"""
 
-    pass
+    def toggle_power(self) -> None:
+        self.state.enabled = not self.state.enabled
+        if self.state.enabled:
+            print('Radio enabled!')
+            return
+        print('Radio disabled!')
 
 
-class Bridge:
-    """Bridge class"""
+class TV(Device):
+    """TV class"""
 
-    pass
+    def toggle_power(self) -> None:
+        self.state.enabled = not self.state.enabled
+        if self.state.enabled:
+            print('TV enabled!')
+            return
+        print('TV disabled!')
+
+
+class BridgeRemote:
+    """Bridge Remote class"""
+
+    def __init__(self,
+                 device: Device,
+                 volume_increment: int = 10) -> None:
+        self.device = device
+        self.volume_increment = volume_increment
+
+    def toggle_power(self) -> None:
+        self.device.toggle_power()
+
+    def volume_up(self) -> None:
+        volume = self.device.get_volume()
+        new_volume = volume + self.volume_increment
+        self.device.set_volume(new_volume)
+
+    def volume_down(self) -> None:
+        volume = self.device.get_volume()
+        new_volume = volume - self.volume_increment
+        self.device.set_volume(new_volume)
+
+    def channel_up(self) -> None:
+        channel = self.device.get_channel()
+        self.device.set_channel(channel + 1)
+
+    def channel_down(self) -> None:
+        channel = self.device.get_channel()
+        self.device.set_channel(channel - 1)
