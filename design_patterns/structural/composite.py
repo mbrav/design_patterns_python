@@ -38,7 +38,7 @@ class AbstractPackage(ABC):
     "Abstract Package"
 
     weight: float = 0.0
-    id_iter: count[int] = count(start=1)
+    id_iter = count(start=1)
 
     def __init__(self) -> None:
         self.id = next(AbstractPackage.id_iter)
