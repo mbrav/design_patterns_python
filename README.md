@@ -82,3 +82,4 @@ Behavior Design Patterns are responsible for how one class communicates with oth
 ## Additional resources
 
 - [python-patterns.guide](https://python-patterns.guide/)
+- [faif/python-patterns](https://github.com/faif/python-patterns)
