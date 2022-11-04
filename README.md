@@ -35,7 +35,7 @@ Structural Design Patterns mainly responsible for assemble object and classes in
 
 - **Composite** ([structural/composite.py](design_patterns/structural/adapter.py))  - It wraps a group of objects into a single object.
 
-- **Decorator** ([structural/decorator.py](design_patterns/structural/adapter.py))  - It extends the object behavior dynamically at the run time.
+- **Decorator** ([structural/decorator.py](design_patterns/structural/decorator.py))  - It extends the object behavior dynamically at the run time.
 
 - **Facade** ([structural/facade.py](design_patterns/structural/facade.py))  - It offers a simple interface to more complex underlying objects.
 
