@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "design_patterns"
-version = "0.2.4"
+version = "0.2.5"
 description = "A collection of design patterns in Python"
 authors = ["\"mbrav\" <mbrav@protonmail.com>"]
 readme = "README.md"

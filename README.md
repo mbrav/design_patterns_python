@@ -25,7 +25,7 @@ As the name suggests, it provides the object or classes creation mechanism that 
 
 - **Singleton**([creational/singleton.py](design_patterns/creational/singleton.py)) - Singleton design pattern make sure that only one instance of an object is created.
 
-### 2. Structural Design Patterns (TODO)
+### 2. Structural Design Patterns
 
 Structural Design Patterns mainly responsible for assemble object and classes into a larger structure making sure that these structure should be flexible and efficient. They are very essential for enhancing readability and maintainability of the code. It also ensure that functionalities are properly separated, encapsulated. It reduces the minimal interface between interdependent things.
 
