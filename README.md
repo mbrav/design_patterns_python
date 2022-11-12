@@ -15,13 +15,13 @@ There are also two types of patterns - *idioms* and *architectural* patterns.
 
 As the name suggests, it provides the object or classes creation mechanism that enhance the flexibilities and reusability of the existing code. They reduce the dependency and controlling how the use interaction with our class so we wouldn't deal with the complex construction. Below are the various design pattern of creational design pattern.
 
-- **Factory Method** ([creational/factory.py](design_patterns/creational/factory.py) - Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses. The pattern has creational purpose and applies to classes where deals with relationships through inheritence ie. they are static-fixed at compile time. In contrast to *Abstract Factory*, Factory Method contain method to produce only one type of product.
+- **Factory Method** ([creational/factory.py](design_patterns/creational/factory.py) - Defines an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses. The pattern has creational purpose and applies to classes where deals with relationships through inheritence ie. they are static-fixed at compile time. In contrast to *Abstract Factory*, Factory Method contain method to produce only one type of product.
 
 - **Abstract Factory** ([creational/abstract_factory.py](design_patterns/creational/abstract_factory.py)) - Abstract factory pattern has creational purpose and provides an interface for creating families of related or dependent objects without specifying their concrete classes. Pattern applies to object and deal with object relationships, which are more dynamic. In contrast to *Factory Method*, Abstract Factory pattern produces family of types that are related, ie. it has more than one method of types it produces.
 
-- **Builder** ([creational/builder.py](design_patterns/creational/builder.py)) - A generative design pattern, which allows you to copy objects without going into details of their implementation.
+- **Builder** ([creational/builder.py](design_patterns/creational/builder.py)) - A generative design pattern, which allows you to copy objects without going into details of their implementation. It decouples the creation of a complex object and its representation, so that the same process can be reused to build objects from the same family. This is useful when you must separate the specification of an object from its actual representation (generally for abstraction).
   
-- **Prototype** ([creational/prototype.py](design_patterns/creational/prototype.py)) - It is used to create a new object from an existing object,
+- **Prototype** ([creational/prototype.py](design_patterns/creational/prototype.py)) - This patterns aims to reduce the number of classes required by an application. Instead of relying on subclasses it creates objects by copying a prototypical instance at run-time. This is useful as it makes it easier to derive new kinds of objects, when instances of the class have only a few different combinations of state, and when instantiation is expensive.
 
 - **Singleton**([creational/singleton.py](design_patterns/creational/singleton.py)) - Singleton design pattern make sure that only one instance of an object is created.
 
@@ -29,19 +29,19 @@ As the name suggests, it provides the object or classes creation mechanism that 
 
 Structural Design Patterns mainly responsible for assemble object and classes into a larger structure making sure that these structure should be flexible and efficient. They are very essential for enhancing readability and maintainability of the code. It also ensure that functionalities are properly separated, encapsulated. It reduces the minimal interface between interdependent things.
 
-- **Adapter** ([structural/adapter.py](design_patterns/structural/adapter.py)) - It provides us for two incompatible classes to work together by wrapping an interface around one of the existing classes.
+- **Adapter** ([structural/adapter.py](design_patterns/structural/adapter.py)) - The Adapter pattern provides a different interface for a class. We can think about it as a cable adapter that allows you to charge a phone somewhere that has outlets in a different shape. Following this idea, the Adapter pattern is useful to integrate classes that couldn't be integrated due to their incompatible interfaces.
 
-- **Bridge** ([structural/bridge.py](design_patterns/structural/bridge.py))  - It decouples an abstraction so that two classes can vary independently.
+- **Bridge** ([structural/bridge.py](design_patterns/structural/bridge.py)) - Decouples an abstraction from its implementation.
 
-- **Composite** ([structural/composite.py](design_patterns/structural/adapter.py))  - It wraps a group of objects into a single object.
+- **Composite** ([structural/composite.py](design_patterns/structural/composite.py)) - The composite pattern describes a group of objects that is treated the same way as a single instance of the same type of object. The intent of a composite is to "compose" objects into tree structures to represent part-whole hierarchies. Implementing the composite pattern lets clients treat individual objects and compositions uniformly.
 
-- **Decorator** ([structural/decorator.py](design_patterns/structural/decorator.py))  - It extends the object behavior dynamically at the run time.
+- **Decorator** ([structural/decorator.py](design_patterns/structural/decorator.py)) - The Decorator pattern is used to dynamically add a new feature to an object without changing its implementation. It differs from inheritance because the new feature is added only to that particular object, not to the entire subclass.
 
-- **Facade** ([structural/facade.py](design_patterns/structural/facade.py))  - It offers a simple interface to more complex underlying objects.
+- **Facade** ([structural/facade.py](design_patterns/structural/facade.py)) - The Facade pattern is a way to provide a simpler unified interface to a more complex system. It provides an easier way to access functions of the underlying system by providing a single entry point. This kind of abstraction is seen in many real life situations. For example, we can turn on a computer by just pressing a button, but in fact there are many procedures and operations done when that happens (e.g., loading programs from disk to memory). In this case, the button serves as an unified interface to all the underlying procedures to turn on a computer.
 
-- **Flyweight** ([structural/flyweight.py](design_patterns/structural/flyweight.py))  - It decreases the cost of complex object model.
+- **Flyweight** ([structural/flyweight.py](design_patterns/structural/flyweight.py)) - This pattern aims to minimise the number of objects that are needed by a program at run-time. A Flyweight is an object shared by multiple contexts, and is indistinguishable from an object that is not shared. The state of a Flyweight should not be affected by it's context, this is known as its intrinsic state. The decoupling of the objects state from the object's context, allows the Flyweight to be shared.
 
-- **Proxy** ([structural/proxy.py](design_patterns/structural/proxy.py))  - It reduces the cost, reduce complexity, and provide the placeholder interface to an underlying object to control access.
+- **Proxy** ([structural/proxy.py](design_patterns/structural/proxy.py)) - Proxy is used in places where you want to add functionality to a class without changing its interface. The main class is called `Real Subject`. A client should use the proxy or the real subject without any code change, so both must have the same interface. Logging and controlling access to the real subject are some of the proxy pattern usages.
 
 ### 3. Behavior Design Pattern (TODO)
 
