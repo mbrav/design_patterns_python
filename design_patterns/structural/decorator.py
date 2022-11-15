@@ -20,11 +20,13 @@ class Data:
         self._data = data
 
     def _get_str(self) -> str:
+        """Get string from stored data and convert using the set encoding"""
         if type(self._data) is not str:
             return str(self._data, encoding=ENCODING_TYPE)  # type: ignore
         return self._data
 
     def _get_bytes(self) -> bytes:
+        """Get bytes from stored data and convert using the set encoding"""
         if type(self._data) is not bytes:
             return bytes(self._data, encoding=ENCODING_TYPE)  # type: ignore
         return self._data
@@ -98,12 +100,19 @@ class DataSourceDecorator(ABC):
     """Abstract Data Source Decorator"""
 
     @abstractmethod
-    def __init__(self, data: Data | File) -> None:
+    def __init__(self, data: Data) -> None:
+        self._data = data
+
+    @abstractmethod
+    def _compress(self, blob: bytes) -> None:
         ...
 
     @abstractmethod
-    def read(self) -> Data | File:
+    def _inflate(self, blob: bytes) -> None:
         ...
+
+    def read(self) -> Data:
+        return self._data
 
 
 class GZIPDecorator(DataSourceDecorator):
@@ -133,6 +142,3 @@ class GZIPDecorator(DataSourceDecorator):
         self._data = Data(gzip.decompress(blob))
         before, after = getsizeof(blob), self._data.size
         print(f'Decompressed {before}B to {after}B ({before / after:.2f}x)')
-
-    def read(self) -> Data:
-        return self._data
