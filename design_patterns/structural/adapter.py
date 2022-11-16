@@ -7,6 +7,7 @@ from typing import Type
 from xml.dom import minidom
 
 DATE_FORMAT = '%d/%m/%Y, %H:%M'
+ENCODING_TYPE = 'unicode'
 
 
 @dataclass
@@ -15,10 +16,6 @@ class MediaClass:
 
     created: str = datetime.now().strftime(DATE_FORMAT)
     text: str = "<empty>"
-
-    @property
-    def __dict__(self):
-        return asdict(self)
 
     @abstractmethod
     def __str__(self) -> str:
@@ -34,14 +31,6 @@ class NewsArticle(MediaClass):
 
     def __str__(self) -> str:
         return f'News Article "{self.title}" ({self.published})'
-
-
-@dataclass
-class Tweet(MediaClass):
-    """Tweet Data Class"""
-
-    def __str__(self) -> str:
-        return f'Tweet "{self.text}" ({self.created})'
 
 
 class MediaParser(ABC):
@@ -65,22 +54,28 @@ class JSONMediaParser(MediaParser):
 
     @classmethod
     def to_text(self, cls: MediaClass) -> str:
-        return json.dumps(cls.__dict__)
+        return json.dumps(asdict(cls))
 
 
 class XMLMediaParser(MediaParser):
     """XML Media Parser class"""
 
     @classmethod
-    def parse(self, cls_type: Type[MediaClass], string: str) -> MediaClass:
-        root_name = type(cls_type()).__name__
+    def parse(self,
+              cls_type: Type[MediaClass],
+              string: str,
+              root: str | None = None) -> MediaClass:
+
+        # Set root name to class type if root name is not specified
+        root_name = root if root else type(cls_type()).__name__
         parsed_xml = minidom.parseString(string)
         if len(parsed_xml.childNodes) != 1:
             raise Exception('XML must have only one root node')
 
         root = parsed_xml.childNodes[0]
         if root.nodeName != root_name:
-            raise ValueError(f'XML Root "{root.nodeName}" is not equal to media type "{root_name}"')
+            raise ValueError(
+                f'XML Root "{root.nodeName}" is not equal to media type "{root_name}"')
 
         keys = {}
         for key in asdict(cls_type()):
@@ -91,13 +86,15 @@ class XMLMediaParser(MediaParser):
         return cls_type(**keys)
 
     @classmethod
-    def to_text(self, cls: MediaClass) -> str:
-        root = ET.Element(type(cls).__name__)
+    def to_text(self,
+                cls: MediaClass,
+                root: str | None = None) -> str:
+        root_name = ET.Element(root) if root else ET.Element(type(cls).__name__)
         for key in asdict(cls):
-            field = ET.SubElement(root, key)
+            field = ET.SubElement(root_name, key)
             field.text = getattr(cls, key)
             print(key, getattr(cls, key))
-        xml = ET.tostring(root, encoding='unicode')
+        xml = ET.tostring(root_name, encoding=ENCODING_TYPE)
         return xml
 
 
@@ -128,3 +125,12 @@ class Adapter:
     def json_to_obj(self, cls_type: Type[MediaClass], json: str) -> MediaClass:
         parsed_obj = self.json_parser.parse(cls_type, json)
         return parsed_obj
+
+
+if __name__ == '__main__':
+    import httpx
+
+    python_rss = 'https://blog.python.org/feeds/posts/default?alt=rss'
+    r = httpx.get(python_rss)
+    print(type(r.content))
+    print(r.status_code)
