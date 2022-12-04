@@ -73,13 +73,14 @@ class XMLMediaParser(MediaParser):
             raise Exception('XML must have only one root node')
 
         root = parsed_xml.childNodes[0]
-        if root.nodeName != root_name:
+        node_name = getattr(root, 'nodeName', None)
+        if node_name != root_name:
             raise ValueError(
-                f'XML Root "{root.nodeName}" is not equal to media type "{root_name}"')
+                f'XML Root "{node_name}" is not equal to media type "{root_name}"')
 
         keys = {}
         for key in asdict(cls_type()):
-            for node in root.childNodes:
+            for node in getattr(root, 'childNodes', []):
                 if node.nodeName == key:
                     keys[key] = node.childNodes[0].data
 
@@ -127,10 +128,10 @@ class Adapter:
         return parsed_obj
 
 
-if __name__ == '__main__':
-    import httpx
+# if __name__ == '__main__':
+#     import httpx
 
-    python_rss = 'https://blog.python.org/feeds/posts/default?alt=rss'
-    r = httpx.get(python_rss)
-    print(type(r.content))
-    print(r.status_code)
+#     python_rss = 'https://blog.python.org/feeds/posts/default?alt=rss'
+#     r = httpx.get(python_rss)
+#     print(type(r.content))
+#     print(r.status_code)
