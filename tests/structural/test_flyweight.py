@@ -14,7 +14,7 @@ class FlyweightTestCase(unittest.TestCase):
 
         self.assertTrue(f1 == f2)
         self.assertTrue(f1 is f2)
-        self.assertEquals(id(f1), id(f2))
+        self.assertEqual(id(f1), id(f2))
 
     def test_02_test_reference(self):
         f1 = Flyweight(1, 'Storage')
@@ -22,7 +22,7 @@ class FlyweightTestCase(unittest.TestCase):
 
         self.assertFalse(f1 == f2)
         self.assertFalse(f1 is f2)
-        self.assertNotEquals(id(f1), id(f2))
+        self.assertNotEqual(id(f1), id(f2))
 
 
 if __name__ == '__main__':
