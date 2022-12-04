@@ -52,25 +52,25 @@ Behavior Design Patterns are responsible for how one class communicates with oth
 
 *Chain of Responsibility* - It representatives the command to a chain of processing object.
 
-- **Command** - It generates the objects which encapsulate actions of parameters.
+- **Command** ([behavioral/command.py](design_patterns/behavioral/command.py)) - It generates the objects which encapsulate actions of parameters.
 
-- **Interpreter** - It implements a specialized language.
+- **Interpreter** ([behavioral/interpretor.py](design_patterns/behavioral/interpretor.py)) - It implements a specialized language.
 
-- **Iterator** - It accesses all the element of an object sequentially without violating its underlying representation.
+- **Iterator** ([behavioral/iterator.py](design_patterns/behavioral/iterator.py)) - It accesses all the element of an object sequentially without violating its underlying representation.
 
-- **Mediator** - It provides the loose coupling between classes by being the only class that has detailed knowledge of their existing methods.
+- **Mediator** ([behavioral/mediator.py](design_patterns/behavioral/mediator.py)) - It provides the loose coupling between classes by being the only class that has detailed knowledge of their existing methods.
 
-- **Memento** - It restores an object in the previous state.
+- **Memento** ([behavioral/memento.py](design_patterns/behavioral/memento.py)) - It restores an object in the previous state.
 
-- **Observer** - It allows a number of observer objects to see an event.
+- **Observer** ([behavioral/observer.py](design_patterns/behavioral/observer.py)) - It allows a number of observer objects to see an event.
 
-- **State** - It allows an object to modify its behavior when it's internal states changes.
+- **State** ([behavioral/state.py](design_patterns/behavioral/state.py)) - It allows an object to modify its behavior when it's internal states changes.
 
-- **Strategy** - It provides one of the families of algorithm to be selected at the runtime.
+- **Strategy** ([behavioral/strategy.py](design_patterns/behavioral/strategy.py)) - It provides one of the families of algorithm to be selected at the runtime.
 
-- **Template Method** - It allows the subclasses to provide concrete behavior. It also defines the skeleton of an algorithm as an abstract class.
+- **Template Method** ([behavioral/template.py](design_patterns/behavioral/template.py)) - It allows the subclasses to provide concrete behavior. It also defines the skeleton of an algorithm as an abstract class.
 
-- **Visitor** - It separates an algorithm from an object structure by moving the hierarchy of methods into one object.
+- **Visitor** ([behavioral/visitor.py](design_patterns/behavioral/visitor.py)) - It separates an algorithm from an object structure by moving the hierarchy of methods into one object.
 
 ## Application Structure Patterns
 
