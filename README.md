@@ -16,7 +16,7 @@ There are also two types of patterns - *idioms* and *architectural* patterns.
 
 ### 1. Creational Design Patterns
 
-As the name suggests, it provides the object or classes creation mechanism that enhance the flexibilities and reusability of the existing code. They reduce the dependency and controlling how the use interaction with our class so we wouldn't deal with the complex construction. Below are the various design pattern of creational design pattern.
+As the name suggests, creation design patters provide objects or a creation mechanism that enhance the flexibilities and reusability of existing code. They reduce the dependency and controlling how the user interacts with our class so the user would not have to deal with their construction. Below are the various creational design patterns:
 
 - **Factory Method** ([creational/factory.py](design_patterns/creational/factory.py) - Defines an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses. The pattern has creational purpose and applies to classes where deals with relationships through inheritence ie. they are static-fixed at compile time. In contrast to *Abstract Factory*, Factory Method contain method to produce only one type of product.
 
@@ -30,7 +30,7 @@ As the name suggests, it provides the object or classes creation mechanism that 
 
 ### 2. Structural Design Patterns
 
-Structural Design Patterns mainly responsible for assemble object and classes into a larger structure making sure that these structure should be flexible and efficient. They are very essential for enhancing readability and maintainability of the code. It also ensure that functionalities are properly separated, encapsulated. It reduces the minimal interface between interdependent things.
+Structural Design Patterns are mainly responsible for assembling objects and classes into a larger structure allowing these structures to be flexible and efficient. They essential for enhancing the readability and maintainability of our code. They also ensure that functionalities are properly separated and encapsulated, as well as reducing the number of interfaces between interdependent objects.
 
 - **Adapter** ([structural/adapter.py](design_patterns/structural/adapter.py)) - The Adapter pattern provides a different interface for a class. We can think about it as a cable adapter that allows you to charge a phone somewhere that has outlets in a different shape. Following this idea, the Adapter pattern is useful to integrate classes that couldn't be integrated due to their incompatible interfaces.
 
@@ -46,7 +46,7 @@ Structural Design Patterns mainly responsible for assemble object and classes in
 
 - **Proxy** ([structural/proxy.py](design_patterns/structural/proxy.py)) - Proxy is used in places where you want to add functionality to a class without changing its interface. The main class is called `Real Subject`. A client should use the proxy or the real subject without any code change, so both must have the same interface. Logging and controlling access to the real subject are some of the proxy pattern usages.
 
-### 3. Behavior Design Pattern (TODO)
+### 3. Behavioral Design Patterns (TODO)
 
 Behavior Design Patterns are responsible for how one class communicates with others.
 
